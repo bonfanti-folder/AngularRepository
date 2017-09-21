@@ -1,0 +1,69 @@
+<div *ngIf="!pedidos[0]">
+  <div>
+    <div class="absolute-center" style="height: 30vh">
+      <h4> No hay pedidos de este tipo actualmente </h4>
+    </div>
+  </div>
+</div>
+
+<ul class="timeline" *ngIf="pedidos[0]">
+  <li *ngFor="let pedido of pedidos; let i = index" [ngClass]="{'timeline-inverted': (i%2) !== 0}">
+
+    <div class="timeline-badge"
+         [ngClass]="getBadgeCssClass(pedido)"
+         (onmouseover)="toggleHelpMenu()"
+         (click)="onClick($event,pedido)">
+      <i class="fa" [ngClass]="getPedidoCssClass(pedido)">
+      </i>
+    </div>
+
+    <div class="timeline-panel" [ngClass]="{ 'animate': i === 0 }">
+
+      <div class="card">
+        <div class="card-header text-center lead">
+
+          <div class="row">
+            <div class="col text-left">PEDIDO {{pedido.id}}</div>
+            <div class="col text-right green">${{pedido.precioTotal}}</div>
+          </div>
+        </div>
+        <div class="card-body">
+
+          <div class="row">
+            <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
+              <strong>Fecha: </strong><br>
+              <strong>Hora: </strong><br>
+              <strong>Direccion: </strong><br>
+              <strong>Estado: </strong>
+            </div>
+            <div class="col-sm-6 col-md-7 col-lg-8 col-xl-9">
+              {{pedido.fechaCreacion | date: 'dd-MM-yyyy'}}<br>
+              {{pedido.fechaCreacion | date: 'HH:mm'}}<br>
+              {{pedido.domicilio.direccion}}<br>
+              {{getEstado(pedido)}}
+            </div>
+          </div>
+
+          <label *ngIf="pedido.observaciones"><br>{{pedido.observaciones}}</label>
+
+          <hr>
+          <div>
+            <button *ngIf="tipoEstado === 'PENDIENTE'"
+                    type="button"
+                    class="btn btn-block btn-lg btn-outline-success"
+                    (click)="onClickConfirmado($event,pedido)">
+              CONFIRMAR
+            </button>
+            <button *ngIf="tipoEstado === 'CONFIRMADO'"
+                    type="button"
+                    class="btn btn-block btn-lg btn-outline-danger"
+                    (click)="onClickCerrado($event,pedido)">
+              CERRAR
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+

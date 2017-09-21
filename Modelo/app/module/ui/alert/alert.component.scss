@@ -1,0 +1,87 @@
+@import "../../../../styles/main";
+
+.app-snackbar {
+  cursor: pointer;
+  color: #fff;
+  padding: 16px;
+  border-radius: 0;
+}
+
+.alert-wrapper {
+  width: 100vw !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  position: fixed;
+  z-index: 2000;
+  color: #fff;
+}
+
+@media (min-width: 800px) {
+  .app-snackbar {
+    cursor: pointer;
+    min-width: 250px;
+    margin: 10px;
+    padding: 16px;
+    border-radius: 5px;
+  }
+}
+
+.hide {
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+.success {
+  background-color: $dark-green !important;
+}
+
+.error {
+  background-color: $red !important;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  to {
+    top: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  to {
+    top: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    top: 30px;
+    opacity: 1;
+  }
+  to {
+    top: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    top: 30px;
+    opacity: 1;
+  }
+  to {
+    top: 0;
+    opacity: 0;
+  }
+}

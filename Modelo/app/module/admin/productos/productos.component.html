@@ -1,0 +1,57 @@
+<a class="list-group-item">
+  <div class="row">
+    <div class="col-sm-6 col-md-8">
+      <h4 class="list-group-item-heading">Productos</h4>
+      <p class="list-group-item-heading"> ( {{productos.length}} Productos Disponibles ) </p>
+    </div>
+    <div class="col-sm-6 col-md-4 text-right">
+      <button type="button" class="btn btn-success navbar-btn" (click)="openNewModal()">
+        <span class="app-icon fa fa-plus"></span>
+        Agregar Producto
+      </button>
+    </div>
+  </div>
+</a>
+<div *ngIf="productos[0]" style="height: 120vh">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Descripci&oacute;n</th>
+        <th>Precio</th>
+        <th>Imagen</th>
+        <th class="text-right">Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let producto of pagedItems"
+          [ngStyle]="{'background-color': producto.seleccionado? '#67c18c' : '','color': producto.seleccionado? 'white' : ''}">
+        <td>[{{producto.id}}] - {{producto.nombre}}</td>
+        <td>{{producto.descripcion}}</td>
+        <td>{{producto.precio}}</td>
+        <td>
+          <img height="40" width="40" src="data:image/png;base64,{{producto.imagen}}"
+               onerror="this.src='assets/img/noimage.png'"/>
+          <!--img height="40" width="40" [src]="getProductImage(producto)" onerror="this.src='assets/img/noimage.png'" /-->
+        </td>
+        <td class="text-right">
+          <div class="btn-group">
+            <a (click)="openDeleteModal(producto)" class="btn btn-danger btn-md">
+              <span class="fa fa-times"></span>
+            </a>
+            <a (click)="openUpdateModal(producto)" class="btn btn-success btn-md">
+              <span class="fa fa-pencil"></span>
+            </a>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="col-md-6">
+      <pagination [boundaryLinks]="true" (pageChanged)="pageChanged($event)" [totalItems]="totalItems"
+                  [(ngModel)]="currentPage" class="pagination-sm"
+                  previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+    </div>
+  </div>
+</div>

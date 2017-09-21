@@ -1,0 +1,15 @@
+<div class="input-group">
+  <label class="control-label">{{placeHolder}}</label>
+  <select *ngIf="formControl"
+          class="form-control minimal"
+          [formControl]="formControl"
+          (change)="change && handleChange(formControl.value)">
+    <option [ngValue]="item" *ngFor="let item of list">{{label(item)}}</option>
+  </select>
+  <select *ngIf="!formControl"
+          (change)="handleChange(mModel)"
+          [(ngModel)]="mModel"
+          class="form-control minimal">
+    <option [ngValue]="item" *ngFor="let item of list" (click)="handleChange(item)">{{label(item)}}</option>
+  </select>
+</div>

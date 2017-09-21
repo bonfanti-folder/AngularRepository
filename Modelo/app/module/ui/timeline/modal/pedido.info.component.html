@@ -1,0 +1,25 @@
+<!-- Modal -->
+
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Pedido {{pedido.id}}</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close(true)">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+  <div>
+    <ul *ngFor="let detalle of pedido.detallesPedido; let i = index">
+      <div class="card-block">
+
+        <label><strong>Producto: </strong>{{detalle.producto.nombre}}</label><br>
+        <label><strong>Precio: </strong>{{detalle.precioUnitario}}</label><br>
+        <label><strong>Cantidad: </strong>{{detalle.cantidad}}</label><br>
+      </div>
+    </ul>
+  </div>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="activeModal.close(true)">Close</button>
+</div>

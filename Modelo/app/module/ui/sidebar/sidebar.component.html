@@ -1,0 +1,18 @@
+<div class="app-sidebar">
+  <nav>
+    <div class="bd-toc-item">
+      <ul class="nav flex-column">
+        <li [routerLinkActive]="['active']">
+          <a routerLink="/admin/estado" class="list-group-item">
+            <i class="fa fa-dashboard" aria-hidden="true"></i> Estados
+          </a>
+        </li>
+        <li [routerLinkActive]="['active']">
+          <a [routerLink]="['/admin/productos']" class="list-group-item">
+            <i class="fa fa-area-chart" aria-hidden="true"></i> Productos
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>

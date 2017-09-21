@@ -1,0 +1,19 @@
+<div class="container">
+  <ngb-tabset>
+    <ngb-tab title="Pendientes">
+      <ng-template ngbTabContent>
+        <app-timeline [pedidos]="pedidosPendientes" [tipoEstado]="'PENDIENTE'"></app-timeline>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Confirmados">
+      <ng-template ngbTabContent>
+        <app-timeline [pedidos]="pedidosConfirmados" [tipoEstado]="'CONFIRMADO'"></app-timeline>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Cerrados">
+      <ng-template ngbTabContent>
+        <app-timeline [pedidos]="pedidosCerrados" [tipoEstado]="'CERRADO'"></app-timeline>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>

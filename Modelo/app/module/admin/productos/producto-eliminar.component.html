@@ -1,0 +1,37 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Confirmaci&oacute;n</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="CERRAR" (click)="activeModal.close(true)">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <label>&#191;Quer&eacute;s dar de baja a este producto&#63;</label>
+  <br>
+  <label>
+    [ID]:&nbsp;<strong>{{producto.id}}</strong>
+    <br/>
+    Nombre:&nbsp;<strong>{{producto.nombre}}</strong>
+    <br/>
+    Descripci&oacute;n:&nbsp;<strong>{{producto.descripcion}}</strong>
+    <br/>
+    Precio:&nbsp;<strong>{{producto.precio}}</strong>
+  </label>
+  <br>
+  <label>
+    Imagen:&nbsp;
+    <div class="app-img text-center ">
+      <img height="40" width="40" src="data:image/png;base64,{{producto.imagen}}"
+           onerror="this.src='assets/img/noimage.png'"/>
+    </div>
+
+  </label>
+
+  <!-- BOTONES -->
+  <!--div class="text-right">
+    <button type="button" class="btn btn-danger" (click)="deleteProducto()">ELIMINAR</button>
+  </div-->
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="activeModal.close(true)">CERRAR</button>
+  <button type="button" class="btn btn-danger" (click)="deleteProducto()">ELIMINAR</button>
+</div>

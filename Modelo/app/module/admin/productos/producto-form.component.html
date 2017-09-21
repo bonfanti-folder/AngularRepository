@@ -1,0 +1,108 @@
+<div class="modal-header">
+  <h5 class="modal-title" [ngSwitch]="isEdit">
+    <span *ngSwitchCase="true">Modificar Producto [ID]:&nbsp;<strong>{{producto.id}}</strong></span>
+    <span *ngSwitchCase="false">Nuevo Producto</span>
+  </h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="CERRAR" (click)="activeModal.close(true)">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="container">
+    <form [formGroup]="form" enctype="multipart/form-data" method="post">
+      <!-- (ngSubmit)="handleSubmit(form.value)" enctype="multipart/form-data" -->
+      <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+        <strong>Error :</strong>
+        <span>{{errorMessage}}</span>
+      </div>
+      <!-- FORMULARIO -->
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group"
+               [ngClass]="{'has-error':!form.controls['nombre'].valid && form.controls['nombre'].touched}">
+            <label>Nombre:</label>
+            <input class="form-control" type="text" placeholder="Nombre del Producto"
+                   [formControl]="form.controls['nombre']">
+            <div *ngIf="form.controls['nombre'].hasError('required') && form.controls['nombre'].touched"
+                 class="help-block">Debes incluir el nombre.
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group"
+               [ngClass]="{'has-error':!form.controls['descripcion'].valid && form.controls['descripcion'].touched}">
+            <label>Descripci&oacute;n</label>
+            <input class="form-control" type="text" placeholder="Descripci&oacute;n del Producto"
+                   [formControl]="form.controls['descripcion']">
+            <small *ngIf="form.controls['descripcion'].hasError('required') && form.controls['descripcion'].touched"
+                   class="help-block">Debes incluir la descripci&oacute;n.
+            </small>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group"
+               [ngClass]="{'has-error':!form.controls['precio'].valid && form.controls['precio'].touched}">
+            <label>Precio</label>
+            <input class="form-control" type="number" placeholder="0.00" [formControl]="form.controls['precio']"
+                   min="0">
+            <small *ngIf="form.controls['precio'].hasError('required') && form.controls['precio'].touched"
+                   class="help-block">Debes incluir el precio.
+            </small>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>Imagen</label>
+            <img id="imagen" height="40" width="40" src="data:image/png;base64,{{producto.imagen}}"
+                 onerror="this.src='assets/img/noimage.png'"/>
+
+            <div [ngSwitch]="isEdit">
+   								<span *ngSwitchCase="true">
+   				      				<button type="button" class="btn btn-secondary"
+                                (click)="eliminarImagen(form.value)">LIMPIAR</button>
+   				      			</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <label [ngSwitch]="isEdit">
+            <span *ngSwitchCase="true">Cambiar Imagen</span>
+            <span *ngSwitchCase="false">Agregar Imagen</span>
+          </label>
+          <input type="file" name="file" (change)="actualizarImagen($event)">
+        </div>
+        <div class="col-sm-6">
+        </div>
+        <div class="col-sm-6">
+          &nbsp;
+        </div>
+        <div class="col-sm-6">
+          &nbsp;
+        </div>
+        <div class="col-sm-6">
+          <label>Normal</label>
+          <div class="app-img text-center ">
+            <img id="previewImagenNormal" name="previewImagen" onerror="this.src='assets/img/noimage.png'"/>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <label>Ajustada (as&iacute; se ver&aacute;)</label>
+          <div class="app-img text-center ">
+            <img id="previewImagenAjustada" name="previewImagen" height="40" width="40"
+                 onerror="this.src='assets/img/noimage.png'"/>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTONES -->
+      <!--div class="text-right">
+          <button type="submit" class="btn btn-primary btn-block" [disabled]="!form.valid">GUARDAR</button>
+        </div-->
+    </form>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="activeModal.close(true)">CERRAR</button>
+  <button type="button" class="btn btn-primary" [disabled]="!form.valid" (click)="handleSubmit(form.value)">GUARDAR
+  </button>
+</div>

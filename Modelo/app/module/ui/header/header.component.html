@@ -1,0 +1,11 @@
+<header class="navbar navbar-dark bg-primary fixed-top navbar-expand-lg app-nav">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/']" (click)="navbarCollapsed = true">Ventas Direct</a>
+
+    <form class="form-inline">
+      <button class="btn btn-outline-light my-2 my-sm-0 nav-logout horizontal-padded" (click)="logout()">CERRAR
+        SESIÓN
+      </button>
+    </form>
+  </div>
+</header>
