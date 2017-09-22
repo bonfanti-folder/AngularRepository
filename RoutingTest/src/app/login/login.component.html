@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Folder IT</title>
+</head>
+<body>
+
+<div class="img-container">
+  <img src="https://cdn2.iconfinder.com/data/icons/website-icons/512/User_Avatar-512.png" alt="Avatar" class="avatar"
+       width="50">
+</div>
+
+<div class="container">
+  <label><b>Usuario</b></label>
+  <input type="text" placeholder="Ingrese su usuario" name="uname">
+  <br>
+
+  <label><b>Contraseña</b></label>
+  <input type="password" placeholder="Ingrese su contraseña" name="psw" required>
+  <br>
+
+  <input id="check-recordar-usuario" type="checkbox" title="Recordar usuario" checked="checked">Recordar usuario
+  <br>
+
+</div>
+
+<div class="button-container">
+  <div>
+    <button type="submit" onclick="login()">Entrar</button>
+    <input type="button" onclick="location.href='/home'" value="Cancelar">
+</div>
+
+<p id="saludo-text"></p>
+<p id="esta-recordado-text"></p>
+
+<script>
+  function login() {
+    var usuario = document.getElementsByName("uname")[0].value;
+    document.getElementById("saludo-text").innerHTML = usuario ? "Hola " + usuario : "";
+
+    var recordado = document.getElementById("check-recordar-usuario").checked;
+    document.getElementById("esta-recordado-text").innerHTML = usuario?("usuario " + (recordado ? "" : "no ") + "recordado"):("");
+  }
+</script>
+</body>
+</html>
