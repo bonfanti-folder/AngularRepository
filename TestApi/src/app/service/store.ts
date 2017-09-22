@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-//import { AppState } from '../domain/app-state';
+import { AppState } from '../domain/app-state';
 
 declare const require: Function
 // estado inicial
-/*
+
 const state: AppState = new AppState()
 const store = new BehaviorSubject<AppState>(state)
 const localforage = require('localforage')
-*/
+
 
 @Injectable()
-export class Store {/*
+export class Store {
     public db = localforage.createInstance({ name: 'VentasDirect' });
     public changes = store
         .asObservable()
@@ -33,5 +33,5 @@ export class Store {/*
     public clear() {
         this.store.next(state);
     }
-*/
+
 }

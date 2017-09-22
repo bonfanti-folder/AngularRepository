@@ -1,11 +1,15 @@
+import { LoadingService } from './loading.service';
+import { Router } from '@angular/router';
+import { AlertService } from './alert.service';
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response} from '@angular/http';
-
+import { JwtHelper } from 'angular2-jwt';
+import { User } from '../domain/user';
 
 @Injectable()
 export class ApiService {
 
-//    private jwtHelper: JwtHelper = new JwtHelper();
+    private jwtHelper: JwtHelper = new JwtHelper();
     private baseURL = 'api/';
     private headers = new Headers({
         'Content-Type': 'application/json',
@@ -17,21 +21,20 @@ export class ApiService {
     private mPromise: Promise<any>;
 
     constructor(private http: Http
-//        ,private router: Router
-//        ,private loadingService: LoadingService
-//        ,private alertService: AlertService
+        ,private router: Router
+        ,private loadingService: LoadingService
+        ,private alertService: AlertService
 ) {
-
-     /*    this.http.get('assets/license.json')
+/*     this.http.get('assets/license.json')
             .map(res => res.json())
             .first().toPromise()
             .then((data: any) => {
                 localStorage.setItem('license', this.jwtHelper.decodeToken(data.token).license);
                 localStorage.setItem('client', this.jwtHelper.decodeToken(data.token).client);
-            });
-  */   }
+            }); */
+    }
 
- /*    isAuthNecessary(isAuthNecessary: boolean) {
+    isAuthNecessary(isAuthNecessary: boolean) {
         this.headers.set('Accept', 'application/json');
         if (!isAuthNecessary) return;
         // use jwt
@@ -57,22 +60,22 @@ export class ApiService {
 
     public async getResponse(path: string, isAuthNecessary: boolean = true) {
         this.loadingService.start();
-        this.isAuthNecessary(isAuthNecessary);
+        //this.isAuthNecessary(isAuthNecessary);
         return this.http.get(`${this.baseURL}${path}`, { headers: this.headers })
-            //.map(this.processResponse)
+            .map(this.processResponse)
             .map((response: Response) => response.json()
                 .finally(() => this.loadingService.finish()));
     }
- */
+
     public async get(path: string, paramString: string, isAuthNecessary: boolean = true): Promise<any> {
-//        this.loadingService.start();
-//        this.isAuthNecessary(isAuthNecessary);
+          this.loadingService.start();
+          //this.isAuthNecessary(isAuthNecessary);
         this.mPromise = this.http.get(`${this.baseURL}${path}${paramString}`, { headers: this.headers })
             .map(this.processResponse)
-//            .finally(() => this.loadingService.finish())
+            .finally(() => this.loadingService.finish())
             .first().toPromise();
 
-//        Promise.all([this.mPromise]).catch(error => this.catchError(error));
+        Promise.all([this.mPromise]).catch(error => this.catchError(error));
 
         return this.mPromise;
     }
@@ -151,12 +154,14 @@ export class ApiService {
         Promise.all([this.mPromise]).catch(error => this.catchError(error));
         return this.mPromise;
     }
-
+*/
     public async loginPost(path: string, body): Promise<any> {
         this.loadingService.start();
         this.mPromise = this.http
             .post(`${this.baseURL}${path}`, JSON.stringify(body), { headers: this.headers })
             .map((response: Response) => {
+                console.log('test');
+                console.log(response);                
                 body.token = response.headers.get('authorization').slice(7);
                 if (body && body.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -169,13 +174,13 @@ export class ApiService {
         Promise.all([this.mPromise]).catch(error => this.catchError(error));
         return this.mPromise;
     }
-*/
+
     private processResponse(response: Response): Response {
         if (response.status >= 200 && response.status < 300) return response.json();
     }
-/*
+
     private async catchError(error) {
-        this.loadingService.reset();
+        //this.loadingService.reset();
         try {
             const body = error.json();
             let mensaje = 'Error Interno, por favor intente mas tarde';
@@ -190,6 +195,6 @@ export class ApiService {
             let mensaje = 'Error Interno, por favor intente mas tarde';
             this.alertService.error(mensaje);
         }
-    } */
+    } 
 
 }
