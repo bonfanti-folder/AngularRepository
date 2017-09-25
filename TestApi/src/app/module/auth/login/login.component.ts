@@ -10,17 +10,19 @@ import { User } from '../../../domain/user';
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-
+    model: any = {};
     constructor(private router:Router , private auth: AppAuthService) {  }
 
     loginUser(e) {
         e.preventDefault();
-        var username = e.target.elements[0].value;
-        var password = e.target.elements[1].value;
-
+        var email = this.model.email;
+        var password = this.model.password;
+        console.log(this.model.email);
+        console.log(this.model.password);
         const user = new User();
-        user.id = Number(e.target.elements[0].value);
-        user.password = e.target.elements[1].value;
+
+        user.email = email;
+        user.password = password;
         this.auth.login(user);
 
   /*       if (username == 'admin' && password == 'admin') {

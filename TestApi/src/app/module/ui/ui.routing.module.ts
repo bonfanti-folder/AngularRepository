@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PublicHomeComponent } from './public-home/public-home.component';
+import { AdminModule } from '../admin/admin.module';
+import { AuthGuard } from '../../service/guard/auth.guard';
 
 const routes: Routes = [
     {
@@ -18,6 +20,11 @@ const routes: Routes = [
             },
         ]
     },
+    { 
+        path: 'admin',  
+        canActivate: [AuthGuard],
+        loadChildren: '../admin/admin.module#AdminModule', 
+    }
 
 ]
 

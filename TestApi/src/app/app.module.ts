@@ -1,9 +1,11 @@
+import { AuthGuard } from './service/guard/auth.guard';
 import { AlertService } from './service/alert.service';
 import { LoadingService } from './service/loading.service';
 import { AppRoutingModule } from './app.routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 
@@ -18,7 +20,7 @@ import { StoreService } from './service/store.service';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    HttpModule, 
+    HttpModule,
     RouterModule,
     AppRoutingModule
   ],
@@ -27,6 +29,7 @@ import { StoreService } from './service/store.service';
               Store, 
               StoreService,
               LoadingService,
+              AuthGuard,
               AlertService],
   bootstrap: [AppComponent]
 })
