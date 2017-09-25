@@ -9,6 +9,17 @@
 <div class="título">
   <h1>Welcome to {{empresa.nombre}}!</h1>
   <h2>{{empresa.lema}}</h2>
+</div>
+<div class="valores">
+  <h3><b>Nuestros valores:</b></h3>
+  <ul>
+    <li *ngFor="let hero of empresa.valores">
+      {{ hero }}
+    </li>
+  </ul>
+</div>
+<p *ngIf="empresa.valores.length > 2">Una empresa con muchos valores!</p>
+<div class="links">
   <a href="/about">Sobre la aplicación</a>
   <br><br>
   <a href="/login">Loguearse</a>
