@@ -9,7 +9,6 @@ import {EmpresaService} from "../../../service/empresa.service";
 export class HomeEmpresaComponent implements OnInit {
 
   empresa;
-  valorSeleccionado;
 
   constructor(private service: EmpresaService) {
   }
@@ -18,7 +17,12 @@ export class HomeEmpresaComponent implements OnInit {
     this.service.getEmpresa().then(empresa => this.empresa = empresa);
   }
 
-  seleccionarValor(valor) {
-    this.valorSeleccionado = valor;
+  eliminarValor(index) {
+    this.empresa.valores.splice(index, 1);
   }
+
+  agregarValor(valor) {
+    this.empresa.valores.push(valor);
+  }
+
 }

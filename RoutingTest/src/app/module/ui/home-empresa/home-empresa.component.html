@@ -8,12 +8,17 @@
 <div class="valores">
   <h3><b>Nuestros valores:</b></h3>
   <ul>
-    <li *ngFor="let valor of empresa?.valores" (click)="seleccionarValor(valor)">
-      {{ valor }}
+    <li *ngFor="let valor of empresa?.valores; let i = index">
+      {{valor}}
+      <span (click)="eliminarValor(i)">x</span>
     </li>
   </ul>
+  <div class="addItem">
+    <input placeholder="Add Item" class="addText" #item>
+    <button (click)="agregarValor(item.value); item.value=''">Add</button>
+  </div>
 </div>
-<p *ngIf="valorSeleccionado != null">Valor destacado: {{valorSeleccionado}}</p>
+<br>
 <p *ngIf="empresa?.valores.length > 2">Una empresa con muchos valores!</p>
 <div class="links">
   <a routerLink="/about">Sobre la aplicación</a>

@@ -7,6 +7,11 @@ const routes: Routes = [
     pathMatch: 'full',
     redirectTo: 'empresa',
   },
+  {
+    path: 'empresa',
+    loadChildren: './module/ui/ui.module#UIModule'
+  },
+  {path: 'login', loadChildren: './module/login/login.module#LoginModule'},
 ];
 
 @NgModule({

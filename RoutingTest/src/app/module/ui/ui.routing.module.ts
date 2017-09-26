@@ -6,13 +6,16 @@ import {BienvenidaComponent} from "./bienvenida/bienvenida.component";
 
 const routes: Routes = [
   {
-    path: 'empresa',
+    path: '',
     component: HomeEmpresaComponent,
     pathMatch: 'full'
   },
-  {path: 'about', component: AboutComponent},
+  {
+    path: 'about',
+    pathMatch: 'full',
+    component: AboutComponent
+  },
   {path: 'welcome', component: BienvenidaComponent},
-  {path: 'login', loadChildren: '../login/login.module#LoginModule'},
 ];
 
 @NgModule({
