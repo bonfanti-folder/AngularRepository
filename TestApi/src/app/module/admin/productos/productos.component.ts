@@ -4,6 +4,10 @@ import { Subscription } from 'rxjs/Subscription';
 import { Store } from '../../../service/store';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ProductosService } from './productos.service';
+import { Router } from '@angular/router';
+import { Observable }        from 'rxjs/Observable';
+import { Subject }           from 'rxjs/Subject';
+
 
 
 class Data {
@@ -18,24 +22,29 @@ class Data {
     styleUrls: ['./productos.component.scss']
 })
 export class ProductosComponent implements OnInit{
-
-    productos: Producto[] ;
+    productos: Producto[];
     selectedProducto: Producto;
+    prodFilter: any = { nombre: '' };
 
-    constructor(private productosService: ProductosService) { }
+    constructor(private productosService: ProductosService,
+                private router: Router) {
+                 }
 
-    getProducts(): void {
-        this.productos = this.productosService.getProducts();
-    }
+     getProducts(): void {
+        this.productosService.getProductos().then(data=> this.productos = data);  
+    }  
 
     ngOnInit(): void {
-        this.getProducts();
+        this.getProducts();  
     }
     
     onSelect(prod: Producto): void {
         this.selectedProducto = prod;
     }
 
+
+ 
+  
 
 
 

@@ -1,10 +1,10 @@
 <div class="container-fluid admin">
   <div class="row">
-    <div class="col-sm-12 col-lg-2 aside">
-      Admin view
-      <br>
-      <a routerLink="/productos">Procuctos link</a>
-    </div>
+    <nav>
+        <a routerLink="/productos" class="button" role="button" routerLinkActive="active">Productos</a>
+        <a routerLink="/add"	 class="button" role="button" routerLinkActive="active">Add</a>
+        <a routerLink="/findbyname"	 class="button" role="button" routerLinkActive="active">Search</a>
+    </nav>
     <div class="col-sm-12 col-lg-10 content">
       <div class="container">
         <router-outlet></router-outlet>

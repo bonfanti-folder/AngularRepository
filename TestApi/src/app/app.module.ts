@@ -14,7 +14,7 @@ import { ApiService } from './service/api.service';
 import { ApplicationService } from './service/aplication.service';
 import { Store } from './service/store';
 import { StoreService } from './service/store.service';
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +22,7 @@ import { StoreService } from './service/store.service';
     BrowserModule,
     HttpModule,
     RouterModule,
+    NgbModule.forRoot(),
     AppRoutingModule
   ],
   providers: [ApiService,

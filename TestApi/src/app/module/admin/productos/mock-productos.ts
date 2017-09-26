@@ -1,28 +1,37 @@
 import { Producto } from '../../../domain/producto';
-
-export const PRODUCTOS: Producto[] = [
-    {  
-        id: 0,
-        nombre: 'test-1',
-        descripcion: 'description',
-        precio: 120,
-        imagen: 'imagen' 
-    },
-    {  
-        id: 1,
-        nombre: 'test-2',
-        descripcion: 'description2',
-        precio: 120,
-        imagen: 'imagen2' 
-    },
-    {  
-        id: 2,
-        nombre: 'test-3',
-        descripcion: 'description3',
-        precio: 120,
-        imagen: 'imagen3' 
-    }, 
-
-
-];
-
+import { InMemoryDbService } from 'angular-in-memory-web-api';
+export class InMemoryDataService implements InMemoryDbService {
+    createDb() {
+        const productos: Producto[] = [
+            {  
+                id: 0,
+                nombre: 'Coca',
+                descripcion: 'description 1',
+                precio: 35,
+                imagen: 'imagen' 
+            },
+            {  
+                id: 1,
+                nombre: 'Sprite',
+                descripcion: 'description 2',
+                precio: 50,
+                imagen: 'imagen2' 
+            },
+            {  
+                id: 2,
+                nombre: 'Fanta',
+                descripcion: 'description 3',
+                precio: 40,
+                imagen: 'imagen3' 
+            },
+            {  
+                id: 3,
+                nombre: 'Manao',
+                descripcion: 'description 4',
+                precio: 10,
+                imagen: 'imagen4' 
+            }
+        ];
+        return {productos};
+      }
+    }

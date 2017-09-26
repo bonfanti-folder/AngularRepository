@@ -1,15 +1,35 @@
-<h2>Mis productos</h2>
-<ul class="productos">
-    <li *ngFor="let producto of productos" (click)="onSelect(producto)"
-    [class.selected]="producto === selectedProducto">
-        <span class="badge">{{producto.nombre}}</span> {{producto.precio}}
-      </li>
-</ul>
-<div *ngIf="selectedProducto">
-    <h2>{{selectedProducto.nombre}} details!</h2>
-    <div><label>id: </label>{{selectedProducto.id}}</div>
-    <div>
-        <label>name: </label>
-        <input [(ngModel)]="selectedProducto.nombre" placeholder="nombre"/>
-    </div>
-</div>
+
+
+<table class="table">
+    <tbody>
+      <tr>
+        <td>
+            <div id="search-component">
+                <h2>Mis productos</h2>
+                <h4>Filter</h4>
+                <div id="search-field" class="top-div">
+                    <input #input type="text" placeholder="Filter"[(ngModel)]="prodFilter.nombre">
+                </div>
+                <ul class="productos">
+                    <li *ngFor="let producto of productos | filterBy: prodFilter" (click)="onSelect(producto)"
+                    [class.selected]="producto === selectedProducto">
+                        <span class="badge">{{producto.nombre}}</span> {{producto.precio}}
+                      </li>
+                </ul>
+            </div>
+        </td>
+        <td>
+            <div *ngIf="selectedProducto">
+                <h2>{{selectedProducto.nombre}} details!</h2>
+                <div><label>id: </label>{{selectedProducto.id}}</div>
+                <div>
+                    <label>name: </label>
+                    <input [(ngModel)]="selectedProducto.nombre" placeholder="nombre"/>
+                </div>
+                <div><label>descripción: </label>{{selectedProducto.descripcion}}</div>
+            
+            </div>
+        </td>
+      </tr>     
+    </tbody>
+  </table>
