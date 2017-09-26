@@ -155,6 +155,31 @@ export class ApiService {
         return this.mPromise;
     }
 */
+    public async put(path: string, body, isAuthNecessary: boolean = true): Promise<any> {
+        this.loadingService.start();
+        this.isAuthNecessary(isAuthNecessary);
+        this.mPromise = this.http
+            .put(`${this.baseURL}${path}`, JSON.stringify(body), { headers: this.headers })
+            .map(this.processResponse)
+            .finally(() => this.loadingService.finish())
+            .first().toPromise();
+
+        Promise.all([this.mPromise]).catch(error => this.catchError(error));
+        return this.mPromise;
+    }
+
+    public async post(path: string, body, isAuthNecessary: boolean = true): Promise<any> {
+        this.loadingService.start();
+        this.isAuthNecessary(isAuthNecessary);
+        this.mPromise = this.http
+            .post(`${this.baseURL}${path}`, JSON.stringify(body), { headers: this.headers })
+            .map(this.processResponse)
+            .finally(() => this.loadingService.finish())
+            .first().toPromise();
+
+        Promise.all([this.mPromise]).catch(error => this.catchError(error));
+        return this.mPromise;
+    }
     public async loginPost(path: string, body): Promise<any> {
         this.loadingService.start();
         this.mPromise = this.http

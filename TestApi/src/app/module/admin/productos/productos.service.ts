@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { Producto } from '../../../domain/producto';
 import { InMemoryDataService } from './mock-productos';
+import { ApiService } from '../../../service/api.service';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -12,7 +13,7 @@ export class ProductosService {
     private headers = new Headers({'Content-Type': 'application/json'});
     private ProductosUrl = 'api/productos';  // URL to web api
  
-    constructor(private http: Http) { }
+    constructor(private http: Http, private api: ApiService) { }
 
 /*     getProducts(): Producto[] {
         return InMemoryDataService;
@@ -43,12 +44,17 @@ export class ProductosService {
             .catch(this.handleError);
     }
  
-    create(name: string): Promise<Producto> {
-        return this.http
-        .post(this.ProductosUrl, JSON.stringify({name: name}), {headers: this.headers})
+    create(product: any): Promise<Producto> {
+/*         return this.http
+        .post(this.ProductosUrl, JSON.stringify({nombre: product.name, precio: product.precio}), {headers: this.headers})
         .toPromise()
         .then(res => res.json().data as Producto)
-        .catch(this.handleError);
+        .catch(this.handleError); */
+        return this.api.post('productos',  JSON.stringify({nombre: product.name, precio: product.precio}), false)
+        .then(data => {
+            console.log(data);
+            return data;
+        });
     }
  
     update(Producto: Producto): Promise<Producto> {

@@ -25,10 +25,21 @@ export class ProductosComponent implements OnInit{
     productos: Producto[];
     selectedProducto: Producto;
     prodFilter: any = { nombre: '' };
+    model: any = {};
 
     constructor(private productosService: ProductosService,
                 private router: Router) {
                  }
+
+    add(e): void {
+    e.preventDefault();
+    console.log(this.model);
+    this.productosService.create(this.model)
+        .then(producto => {
+        this.productos.push(producto);
+        this.selectedProducto = null;
+        });
+    }
 
      getProducts(): void {
         this.productosService.getProductos().then(data=> this.productos = data);  

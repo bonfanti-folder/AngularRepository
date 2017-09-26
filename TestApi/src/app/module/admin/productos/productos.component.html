@@ -19,6 +19,25 @@
             </div>
         </td>
         <td>
+            <form #addForm=ngForm (submit)="add($event)">
+                <div>
+                    <label>Producto name:</label> <input name="nombre" [(ngModel)]="model.name"/>
+                </div>
+                <div>
+                    <label>Descripción:</label> <input name="desc" [(ngModel)]="model.desc" />          
+                </div>
+                <div>
+                    <label>Precio:</label> <input type="number" name="precio" [(ngModel)]="model.precio"/>          
+                </div>
+                <div class="input">
+                    <input type="submit" value="Agregar">
+                </div>
+            </form>
+
+        </td>
+      </tr>
+      <tr>
+        <td>
             <div *ngIf="selectedProducto">
                 <h2>{{selectedProducto.nombre}} details!</h2>
                 <div><label>id: </label>{{selectedProducto.id}}</div>
@@ -26,10 +45,9 @@
                     <label>name: </label>
                     <input [(ngModel)]="selectedProducto.nombre" placeholder="nombre"/>
                 </div>
-                <div><label>descripción: </label>{{selectedProducto.descripcion}}</div>
-            
+                <div><label>descripción: </label>{{selectedProducto.descripcion}}</div>            
             </div>
         </td>
-      </tr>     
+      </tr>
     </tbody>
   </table>
