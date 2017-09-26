@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import {Empresa} from "./modelo/empresa";
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +6,4 @@ import {Empresa} from "./modelo/empresa";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  empresa = new Empresa("Folder IT", "Somos nuestra gente", ["Valor 1", "Valor 2", "Valor 3"]);
 }

@@ -1,0 +1,28 @@
+<div class="img-container">
+  <img src="https://cdn2.iconfinder.com/data/icons/website-icons/512/User_Avatar-512.png" alt="Avatar" class="avatar"
+       width="50">
+</div>
+
+<div class="container">
+  <label><b>Usuario</b></label>
+  <input type="text" placeholder="Ingrese su usuario" [(ngModel)]="usuario" #user="ngModel">
+  <br>
+
+  <label><b>Contraseña</b></label>
+  <input type="password" placeholder="Ingrese su contraseña">
+  <br>
+
+  <input type="checkbox" title="Recordar usuario" checked="checked" #checked="ngModel" [(ngModel)]="recordado">Recordar
+  usuario
+  <br>
+
+</div>
+
+<div class="button-container">
+  <div>
+    <button type="submit" (click)="login()">Entrar</button>
+    <input type="button" (click)="salir()" value="Cancelar">
+  </div>
+</div>
+
+<p id="saludo-text" [(innerHTML)]="saludo"></p>

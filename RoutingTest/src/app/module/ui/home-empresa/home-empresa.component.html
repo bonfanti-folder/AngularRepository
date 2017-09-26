@@ -1,0 +1,22 @@
+<div class="imgcontainer">
+  <img src="https://folderit.net/wp-content/uploads/2016/07/Color-1.png" alt="Folder IT" width="300">
+</div>
+<div class="título">
+  <h1>Welcome to {{empresa?.nombre}}!</h1>
+  <h2>{{empresa?.lema}}</h2>
+</div>
+<div class="valores">
+  <h3><b>Nuestros valores:</b></h3>
+  <ul>
+    <li *ngFor="let valor of empresa?.valores" (click)="seleccionarValor(valor)">
+      {{ valor }}
+    </li>
+  </ul>
+</div>
+<p *ngIf="valorSeleccionado != null">Valor destacado: {{valorSeleccionado}}</p>
+<p *ngIf="empresa?.valores.length > 2">Una empresa con muchos valores!</p>
+<div class="links">
+  <a routerLink="/about">Sobre la aplicación</a>
+  <br><br>
+  <a routerLink="/login">Loguearse</a>
+</div>
